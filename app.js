@@ -50,6 +50,7 @@ transports: [
 // Commander CLI definition
 
 const { Command } = require('commander');
+const { exit } = require('process');
 const program = new Command();
 program.version('0.1.1')
 .option('-d, --debug', 'Enables debugging messages and disables the actual delivery of messages.')
@@ -94,6 +95,7 @@ if (options.bcc) {
 if (config.extendedLogging) logger.info('Remaining arguments: ', program.args.length);
 if (program.args.length == 0) {
     logger.error('This version of the program requires 1 parameter defining the to-address')
+    exit(1)
 } else {
     emailData.to = program.args[0]
     if (config.extendedLogging) logger.info('TO set to be: ' + emailData.to )
