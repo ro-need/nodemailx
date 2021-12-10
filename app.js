@@ -115,6 +115,7 @@ if ((typeof config.email !== 'undefined') && (config.email.enabled)) {
 
 
 //Read STDIN
+emailData.text = ""
 process.stdin.on('readable', () => {
     let chunk;
     while ((chunk = process.stdin.read()) !== null) {
