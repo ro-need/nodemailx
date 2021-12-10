@@ -1,0 +1,20 @@
+{
+  "name": "nodemailx",
+  "version": "0.1.0",
+  "description": "Mailx INEEDIT Clone",
+  "scripts": {
+    "test": "node app.js -s 'Test Email' -a config.json test@example.com < README.md",
+    "build": "pkg . --output nodemailx.exe",
+    "buildLinux": "pkg . --target linux"
+  },
+  "dependencies": {
+    "nodemailer": "^6.4.10",
+    "commander": "^8.3.0",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.4.2"
+  },
+  "bin": "app.js",
+  "pkg": {
+    "assets": []
+  }
+}

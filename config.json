@@ -1,0 +1,20 @@
+{
+    "name": "nodemailx",
+    "InfoGeneral": "This is a portable mailer cloning some of the mailx cli format.",
+    "configFolder": "/tmp/config/",
+    "InfoConfig": "This the defaults config. Real $configFolder/config.json will overwrite these values.",
+    "devBuild": true,
+    "extendedLogging": true,
+    "debugMode": true,
+    "email": {
+        "enabled": true,
+        "host": "smtp.yourserver.com",
+        "port": 587,
+        "secure": true, 
+        "auth": {
+          "user": "youremail@yourserver.com", 
+          "pass": "password in base64 or clear text" 
+        },
+        "from": "Name <youremail@yourserver.com>"
+    }
+}
