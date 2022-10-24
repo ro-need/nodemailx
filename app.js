@@ -6,7 +6,9 @@ const nodemailer = require('nodemailer');
 let appName = path.basename(__filename);
 
 // Global Variable to collect all info
-let emailData = {}
+let emailData = {
+    attachments: []
+}
 
 // Config
 var config = require(path.join(process.cwd(), '/config.json'));
@@ -84,7 +86,19 @@ if (options.cc) {
 }
 
 if (options.attach) { 
-    logger.error('Attachment handling not yet defined.')
+    if (config.extendedLogging) logger.info('Attachment to be added is ' + options.attach)
+    let filename = options.attach.split('\\').pop().split('/').pop();
+    try {
+        if(fs.existsSync(options.attach))
+        {   emailData.attachments.push({ filename: filename,
+                                content: fs.readFileSync(options.attach,'base64'),
+                                encoding: 'base64' });
+
+        } else logger.error('ERROR: Attachement ' + options.attach + ' not found.')
+    } catch (err) {
+        logger.error('ERROR: Attachement ' + options.attach + ' could not be read.')
+        logger.error(err)
+    }
 }
 
 if (options.bcc) { 
